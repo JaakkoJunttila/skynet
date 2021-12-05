@@ -5,7 +5,7 @@ import Square from './Square'
 function App() {
   // Alustetaan peli 16. nollalla, eli pelaamattomalla ruudulla.
   // Asetetaan kaikkien ruutujen button-disabled-state falseksi.
-  // Epäkohtelian algoritmi (player 1) aloittaa pelin.
+  // Epäkohtelias algoritmi (player 1) aloittaa pelin.
   const [game, setGame] = useState(Array(16).fill('0'));
   const [player, setPlayer] = useState('1');
   const [isDisabled, setIsDisabled] = useState(Array(16).fill(false));
@@ -20,11 +20,11 @@ function App() {
       move()
       const end = new Date().getTime();
       const time = end - start;
-      console.log(`Execution time: ${time} milliseconds \n`);
+      console.log(`Execution time: ${time} milliseconds`);
     }
   }, [player])
 
-  // Algoritmin vuorolla ruutu valiaan pickMove() funktiolla.
+  // Algoritmin vuorolla ruutu valiataan pickMove() funktiolla.
   // move() funktion annetaan Square (button) komponentille ja
   // käyttäjän vuorolla ruutu valitaan sieltä tulevan clicked parametrin perustella.
   // Kulloisenkin pelaaja numero asetetaan valittuun ruutuun ja peli tallennetaan.

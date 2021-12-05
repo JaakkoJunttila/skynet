@@ -5,6 +5,32 @@ const generateNumbers = () => {
   return winners
 }
 
+const { performance } = require('perf_hooks');
+
+var startTime = performance.now()
+
+const numbers = generateNumbers();
+    
+var endTime = performance.now()
+
+console.log(`Call to generateNumbers took ${endTime - startTime} milliseconds`)
+// 401,104 voittavan rivin seulomiseen kului yhteensä n. 33 sekunttia.
+// Call to generateNumbers took 20736.04404115677 milliseconds
+// Call to generateNumbers took 12380.596415996552 milliseconds
+// parseInt("2222222222222222", 3) = 43,046,720 = 401104 wins
+
+// Tallennetaan voittavat pelitilanteet (401,104 kpl.) win.json tiedostoon
+// pelialgoritmin nopeaa hyödyntämistä varten.
+var numjson = JSON.stringify(numbers);
+const fs = require('fs');
+fs.writeFileSync('wins.json', numjson);
+
+//node four_by_four.js
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
 // Luodaan lista kaikista mahdollisista 16 merkin pituisista merkkijonoista,
 // jotka muodostuvat vain 0,1,2 merkeistä (n.43 miljoonaa kappaletta).
 // parseInt("2222222222222222", 3) = 43,046,720
@@ -82,30 +108,5 @@ const crossWin = (c, p) => {
 const noWin = (c, p) => {
   return (!rowWin(c, p) && !columnWin(c, p) && !crossWin(c, p)) ? true : false
 }
-
-
-const { performance } = require('perf_hooks');
-
-var startTime = performance.now()
-
-const numbers = generateNumbers();
-    
-var endTime = performance.now()
-
-console.log(`Call to generateNumbers took ${endTime - startTime} milliseconds`)
-// 401,104 voittavan rivin seulomiseen kului yhteensä n. 33 sekunttia.
-// Call to generateNumbers took 20736.04404115677 milliseconds
-// Call to generateNumbers took 12380.596415996552 milliseconds
-// parseInt("2222222222222222", 3) = 43,046,720 = 401104 wins
-
-
-// Tallennetaan voittavat pelitilanteet (401,104 kpl.) win.json tiedostoon
-// pelialgoritmin nopeaa hyödyntämistä varten.
-var numjson = JSON.stringify(numbers);
-const fs = require('fs');
-fs.writeFileSync('wins.json', numjson);
-
-
-//node four_by_four.js
 
 

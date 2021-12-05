@@ -9,6 +9,7 @@ function App() {
   const [game, setGame] = useState(Array(16).fill('0'));
   const [player, setPlayer] = useState('1');
   const [isDisabled, setIsDisabled] = useState(Array(16).fill(false));
+  
 
 
   // 401,104 (kaikki) voittavat pelitilanteet pelaajalla 1.
